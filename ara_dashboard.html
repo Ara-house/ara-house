@@ -1,0 +1,250 @@
+
+    <!DOCTYPE html>
+    <html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="refresh" content="3600">
+        <title>아라 하우스 통합 관리 시스템</title>
+        <style>
+            :root { 
+                --airbnb: #FF385C; --booking: #003580; --manual: #748ffc; 
+                --overbooked: #212529; --bg: #f8f9fa;
+                --sun: #fff5f5; --sat: #f0f7ff;
+            }
+            body { font-family: 'Pretendard', sans-serif; background: var(--bg); margin: 0; padding: 20px; }
+            .header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 20px; }
+            
+            /* 알림 바 */
+            .alert-bar { 
+                background: #fff5f5; border: 2px solid #ff6b6b; color: #fa5252; padding: 15px; 
+                border-radius: 12px; margin-bottom: 20px; font-weight: bold; 
+                animation: blink 1.5s infinite; text-align: center;
+            }
+            @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.6; } 100% { opacity: 1; } }
+
+            /* 요약 카드 */
+            .summary-container { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 25px; }
+            .card { background: white; padding: 18px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); border-left: 5px solid #ddd; }
+            .card h3 { margin: 0 0 8px 0; font-size: 13px; color: #888; text-transform: uppercase; }
+            .card .list { font-size: 18px; font-weight: bold; }
+            .checkout { border-left-color: #ffa94d; }
+            .checkin { border-left-color: #63e6be; }
+
+            /* 그리드 테이블 */
+            .container { background: white; padding: 20px; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); overflow-x: auto; }
+            table { border-collapse: collapse; width: 100%; min-width: 1200px; table-layout: fixed; }
+            th, td { border: 1px solid #f1f3f5; padding: 12px 0; text-align: center; font-size: 12px; }
+            th { background: #f8f9fa; position: sticky; top: 0; z-index: 5; }
+            .room-name { background: white; font-weight: bold; position: sticky; left: 0; z-index: 10; border-right: 3px solid #eee; width: 60px; }
+            
+            /* 날짜 스타일 */
+            .is-holiday, .is-sunday { background: var(--sun) !important; color: #e03131; }
+            .is-saturday { background: var(--sat) !important; color: #1971c2; }
+            .is-today { background: #fff9db !important; border: 2px solid #fab005 !important; font-weight: bold; }
+            
+            /* 예약 상태별 색상 */
+            .booked-airbnb { background: var(--airbnb) !important; }
+            .booked-booking { background: var(--booking) !important; }
+            .booked-manual { background: var(--manual) !important; }
+            .booked-overbooked { 
+                background: var(--overbooked) !important; 
+                background-image: repeating-linear-gradient(45deg, transparent, transparent 5px, #fcc419 5px, #fcc419 10px) !important;
+            }
+            
+            .legend { margin-top: 20px; display: flex; gap: 15px; justify-content: flex-end; font-size: 12px; }
+            .dot { width: 10px; height: 10px; border-radius: 2px; display: inline-block; margin-right: 4px; }
+        </style>
+    </head>
+    <body>
+        <div class="header">
+            <h1 style="margin:0;">🐾 ARA HOUSE</h1>
+            <div style="text-align:right;">
+                <div style="font-weight:bold; font-size:18px;">2026년 03월 18일</div>
+                <div style="font-size:11px; color:#999;">UPDATE: 21:27</div>
+            </div>
+        </div>
+
+        
+
+        <div class="summary-container">
+            <div class="card checkout"><h3>🧹 오늘 체크아웃 (청소)</h3><div class="list">203</div></div>
+            <div class="card checkin"><h3>🔑 오늘 체크인</h3><div class="list">203, 301, 305</div></div>
+        </div>
+
+        <div class="container">
+            <table>
+                <thead>
+                    <tr>
+                        <th class="room-name">객실</th>
+                        
+                            <th class="is-today">
+                                18<br><small>3월</small>
+                                
+                            </th>
+                        
+                            <th class="">
+                                19<br><small>3월</small>
+                                
+                            </th>
+                        
+                            <th class="">
+                                20<br><small>3월</small>
+                                
+                            </th>
+                        
+                            <th class="is-saturday">
+                                21<br><small>3월</small>
+                                
+                            </th>
+                        
+                            <th class="is-holiday">
+                                22<br><small>3월</small>
+                                
+                            </th>
+                        
+                            <th class="">
+                                23<br><small>3월</small>
+                                
+                            </th>
+                        
+                            <th class="">
+                                24<br><small>3월</small>
+                                
+                            </th>
+                        
+                            <th class="">
+                                25<br><small>3월</small>
+                                
+                            </th>
+                        
+                            <th class="">
+                                26<br><small>3월</small>
+                                
+                            </th>
+                        
+                            <th class="">
+                                27<br><small>3월</small>
+                                
+                            </th>
+                        
+                            <th class="is-saturday">
+                                28<br><small>3월</small>
+                                
+                            </th>
+                        
+                            <th class="is-holiday">
+                                29<br><small>3월</small>
+                                
+                            </th>
+                        
+                            <th class="">
+                                30<br><small>3월</small>
+                                
+                            </th>
+                        
+                            <th class="">
+                                31<br><small>3월</small>
+                                
+                            </th>
+                        
+                            <th class="">
+                                1<br><small>4월</small>
+                                
+                            </th>
+                        
+                            <th class="">
+                                2<br><small>4월</small>
+                                
+                            </th>
+                        
+                            <th class="">
+                                3<br><small>4월</small>
+                                
+                            </th>
+                        
+                            <th class="is-saturday">
+                                4<br><small>4월</small>
+                                
+                            </th>
+                        
+                            <th class="is-holiday">
+                                5<br><small>4월</small>
+                                
+                            </th>
+                        
+                            <th class="">
+                                6<br><small>4월</small>
+                                
+                            </th>
+                        
+                            <th class="">
+                                7<br><small>4월</small>
+                                
+                            </th>
+                        
+                            <th class="">
+                                8<br><small>4월</small>
+                                
+                            </th>
+                        
+                            <th class="">
+                                9<br><small>4월</small>
+                                
+                            </th>
+                        
+                            <th class="">
+                                10<br><small>4월</small>
+                                
+                            </th>
+                        
+                            <th class="is-saturday">
+                                11<br><small>4월</small>
+                                
+                            </th>
+                        
+                            <th class="is-holiday">
+                                12<br><small>4월</small>
+                                
+                            </th>
+                        
+                            <th class="">
+                                13<br><small>4월</small>
+                                
+                            </th>
+                        
+                            <th class="">
+                                14<br><small>4월</small>
+                                
+                            </th>
+                        
+                            <th class="">
+                                15<br><small>4월</small>
+                                
+                            </th>
+                        
+                            <th class="">
+                                16<br><small>4월</small>
+                                
+                            </th>
+                        
+                            <th class="">
+                                17<br><small>4월</small>
+                                
+                            </th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+    <tr><td class="room-name">101</td><td class="booked-airbnb is-today"></td><td class="booked-airbnb "></td><td class="booked-airbnb "></td><td class="booked-airbnb is-saturday"></td><td class="booked-airbnb is-holiday"></td><td class="booked-airbnb "></td><td class="booked-airbnb "></td><td class="booked-airbnb "></td><td class="booked-airbnb "></td><td class="booked-airbnb "></td><td class="booked-airbnb is-saturday"></td><td class="booked-airbnb is-holiday"></td><td class="booked-airbnb "></td><td class="booked-airbnb "></td><td class="booked-airbnb "></td><td class="booked-airbnb "></td><td class="booked-airbnb "></td><td class="booked-booking is-saturday"></td><td class="booked-booking is-holiday"></td><td class="booked-booking "></td><td class=" "></td><td class=" "></td><td class=" "></td><td class="booked-booking "></td><td class="booked-booking is-saturday"></td><td class=" is-holiday"></td><td class=" "></td><td class=" "></td><td class=" "></td><td class=" "></td><td class=" "></td></tr><tr><td class="room-name">102</td><td class=" is-today"></td><td class=" "></td><td class="booked-booking "></td><td class="booked-booking is-saturday"></td><td class=" is-holiday"></td><td class=" "></td><td class="booked-manual "></td><td class="booked-manual "></td><td class="booked-manual "></td><td class="booked-booking "></td><td class="booked-booking is-saturday"></td><td class=" is-holiday"></td><td class=" "></td><td class="booked-booking "></td><td class="booked-booking "></td><td class="booked-booking "></td><td class="booked-booking "></td><td class="booked-booking is-saturday"></td><td class="booked-booking is-holiday"></td><td class="booked-booking "></td><td class=" "></td><td class=" "></td><td class=" "></td><td class="booked-airbnb "></td><td class="booked-booking is-saturday"></td><td class="booked-booking is-holiday"></td><td class=" "></td><td class="booked-booking "></td><td class=" "></td><td class="booked-booking "></td><td class="booked-booking "></td></tr><tr><td class="room-name">201</td><td class=" is-today"></td><td class="booked-booking "></td><td class="booked-booking "></td><td class="booked-booking is-saturday"></td><td class="booked-booking is-holiday"></td><td class="booked-booking "></td><td class="booked-booking "></td><td class="booked-manual "></td><td class="booked-booking "></td><td class="booked-airbnb "></td><td class="booked-booking is-saturday"></td><td class="booked-airbnb is-holiday"></td><td class="booked-manual "></td><td class="booked-airbnb "></td><td class=" "></td><td class=" "></td><td class="booked-booking "></td><td class="booked-booking is-saturday"></td><td class="booked-booking is-holiday"></td><td class="booked-manual "></td><td class="booked-manual "></td><td class="booked-manual "></td><td class="booked-airbnb "></td><td class="booked-airbnb "></td><td class="booked-airbnb is-saturday"></td><td class="booked-manual is-holiday"></td><td class=" "></td><td class=" "></td><td class=" "></td><td class=" "></td><td class=" "></td></tr><tr><td class="room-name">203</td><td class="booked-airbnb is-today"></td><td class="booked-booking "></td><td class=" "></td><td class="booked-booking is-saturday"></td><td class="booked-booking is-holiday"></td><td class=" "></td><td class=" "></td><td class="booked-booking "></td><td class="booked-booking "></td><td class="booked-booking "></td><td class="booked-booking is-saturday"></td><td class=" is-holiday"></td><td class="booked-airbnb "></td><td class="booked-airbnb "></td><td class="booked-booking "></td><td class=" "></td><td class=" "></td><td class="booked-booking is-saturday"></td><td class="booked-booking is-holiday"></td><td class="booked-booking "></td><td class="booked-booking "></td><td class="booked-booking "></td><td class=" "></td><td class="booked-booking "></td><td class="booked-booking is-saturday"></td><td class="booked-booking is-holiday"></td><td class=" "></td><td class=" "></td><td class=" "></td><td class=" "></td><td class=" "></td></tr><tr><td class="room-name">205</td><td class=" is-today"></td><td class=" "></td><td class=" "></td><td class="booked-booking is-saturday"></td><td class=" is-holiday"></td><td class=" "></td><td class="booked-booking "></td><td class="booked-booking "></td><td class="booked-booking "></td><td class="booked-booking "></td><td class="booked-booking is-saturday"></td><td class="booked-booking is-holiday"></td><td class="booked-booking "></td><td class="booked-booking "></td><td class="booked-booking "></td><td class="booked-airbnb "></td><td class="booked-airbnb "></td><td class="booked-airbnb is-saturday"></td><td class="booked-booking is-holiday"></td><td class="booked-booking "></td><td class=" "></td><td class=" "></td><td class=" "></td><td class="booked-booking "></td><td class="booked-booking is-saturday"></td><td class=" is-holiday"></td><td class=" "></td><td class=" "></td><td class=" "></td><td class=" "></td><td class=" "></td></tr><tr><td class="room-name">207</td><td class=" is-today"></td><td class=" "></td><td class="booked-booking "></td><td class="booked-booking is-saturday"></td><td class="booked-airbnb is-holiday"></td><td class="booked-airbnb "></td><td class="booked-airbnb "></td><td class="booked-airbnb "></td><td class="booked-airbnb "></td><td class="booked-booking "></td><td class="booked-booking is-saturday"></td><td class="booked-airbnb is-holiday"></td><td class="booked-booking "></td><td class=" "></td><td class=" "></td><td class="booked-airbnb "></td><td class="booked-booking "></td><td class="booked-booking is-saturday"></td><td class="booked-booking is-holiday"></td><td class="booked-airbnb "></td><td class="booked-airbnb "></td><td class="booked-airbnb "></td><td class=" "></td><td class="booked-booking "></td><td class="booked-booking is-saturday"></td><td class="booked-booking is-holiday"></td><td class=" "></td><td class=" "></td><td class=" "></td><td class="booked-booking "></td><td class="booked-booking "></td></tr><tr><td class="room-name">209</td><td class=" is-today"></td><td class="booked-booking "></td><td class="booked-booking "></td><td class="booked-booking is-saturday"></td><td class=" is-holiday"></td><td class=" "></td><td class="booked-booking "></td><td class="booked-booking "></td><td class=" "></td><td class="booked-booking "></td><td class="booked-booking is-saturday"></td><td class=" is-holiday"></td><td class=" "></td><td class=" "></td><td class=" "></td><td class="booked-booking "></td><td class="booked-booking "></td><td class="booked-booking is-saturday"></td><td class="booked-booking is-holiday"></td><td class="booked-booking "></td><td class="booked-booking "></td><td class="booked-booking "></td><td class="booked-booking "></td><td class="booked-booking "></td><td class="booked-booking is-saturday"></td><td class="booked-booking is-holiday"></td><td class="booked-booking "></td><td class="booked-booking "></td><td class="booked-booking "></td><td class="booked-booking "></td><td class="booked-booking "></td></tr><tr><td class="room-name">301</td><td class="booked-airbnb is-today"></td><td class=" "></td><td class="booked-airbnb "></td><td class="booked-airbnb is-saturday"></td><td class=" is-holiday"></td><td class=" "></td><td class=" "></td><td class=" "></td><td class="booked-airbnb "></td><td class="booked-airbnb "></td><td class="booked-airbnb is-saturday"></td><td class="booked-manual is-holiday"></td><td class="booked-airbnb "></td><td class="booked-airbnb "></td><td class=" "></td><td class="booked-airbnb "></td><td class="booked-airbnb "></td><td class="booked-airbnb is-saturday"></td><td class=" is-holiday"></td><td class=" "></td><td class=" "></td><td class=" "></td><td class=" "></td><td class="booked-airbnb "></td><td class="booked-airbnb is-saturday"></td><td class="booked-airbnb is-holiday"></td><td class="booked-airbnb "></td><td class="booked-airbnb "></td><td class=" "></td><td class="booked-airbnb "></td><td class="booked-airbnb "></td></tr><tr><td class="room-name">303</td><td class="booked-manual is-today"></td><td class="booked-manual "></td><td class=" "></td><td class="booked-booking is-saturday"></td><td class="booked-booking is-holiday"></td><td class="booked-booking "></td><td class="booked-booking "></td><td class=" "></td><td class=" "></td><td class="booked-booking "></td><td class="booked-booking is-saturday"></td><td class=" is-holiday"></td><td class="booked-booking "></td><td class=" "></td><td class=" "></td><td class="booked-booking "></td><td class="booked-booking "></td><td class="booked-booking is-saturday"></td><td class="booked-booking is-holiday"></td><td class="booked-booking "></td><td class=" "></td><td class="booked-booking "></td><td class=" "></td><td class="booked-booking "></td><td class="booked-booking is-saturday"></td><td class="booked-booking is-holiday"></td><td class=" "></td><td class=" "></td><td class=" "></td><td class=" "></td><td class=" "></td></tr><tr><td class="room-name">305</td><td class="booked-booking is-today"></td><td class="booked-booking "></td><td class="booked-booking "></td><td class="booked-booking is-saturday"></td><td class=" is-holiday"></td><td class=" "></td><td class="booked-booking "></td><td class="booked-booking "></td><td class="booked-booking "></td><td class="booked-booking "></td><td class="booked-booking is-saturday"></td><td class="booked-booking is-holiday"></td><td class="booked-booking "></td><td class="booked-booking "></td><td class="booked-booking "></td><td class=" "></td><td class="booked-booking "></td><td class="booked-booking is-saturday"></td><td class="booked-booking is-holiday"></td><td class="booked-booking "></td><td class="booked-booking "></td><td class="booked-booking "></td><td class=" "></td><td class=" "></td><td class="booked-booking is-saturday"></td><td class="booked-booking is-holiday"></td><td class=" "></td><td class=" "></td><td class=" "></td><td class=" "></td><td class=" "></td></tr><tr><td class="room-name">307</td><td class=" is-today"></td><td class="booked-booking "></td><td class="booked-booking "></td><td class="booked-booking is-saturday"></td><td class="booked-booking is-holiday"></td><td class=" "></td><td class="booked-booking "></td><td class="booked-booking "></td><td class=" "></td><td class="booked-booking "></td><td class="booked-booking is-saturday"></td><td class="booked-booking is-holiday"></td><td class=" "></td><td class=" "></td><td class=" "></td><td class=" "></td><td class="booked-booking "></td><td class="booked-booking is-saturday"></td><td class="booked-booking is-holiday"></td><td class="booked-booking "></td><td class="booked-booking "></td><td class="booked-booking "></td><td class="booked-manual "></td><td class="booked-manual "></td><td class="booked-booking is-saturday"></td><td class="booked-manual is-holiday"></td><td class=" "></td><td class=" "></td><td class=" "></td><td class=" "></td><td class=" "></td></tr><tr><td class="room-name">309</td><td class="booked-booking is-today"></td><td class="booked-booking "></td><td class="booked-booking "></td><td class="booked-booking is-saturday"></td><td class="booked-booking is-holiday"></td><td class="booked-booking "></td><td class="booked-booking "></td><td class=" "></td><td class="booked-booking "></td><td class="booked-booking "></td><td class="booked-booking is-saturday"></td><td class="booked-booking is-holiday"></td><td class="booked-booking "></td><td class=" "></td><td class="booked-booking "></td><td class="booked-booking "></td><td class="booked-booking "></td><td class="booked-booking is-saturday"></td><td class="booked-booking is-holiday"></td><td class="booked-booking "></td><td class="booked-booking "></td><td class="booked-booking "></td><td class=" "></td><td class="booked-booking "></td><td class="booked-booking is-saturday"></td><td class="booked-booking is-holiday"></td><td class=" "></td><td class=" "></td><td class="booked-booking "></td><td class="booked-booking "></td><td class="booked-booking "></td></tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="legend">
+            <div><span class="dot" style="background:var(--airbnb)"></span>에어비앤비</div>
+            <div><span class="dot" style="background:var(--booking)"></span>부킹닷컴</div>
+            <div><span class="dot" style="background:var(--manual)"></span>전화/수동예약</div>
+            <div><span class="dot" style="background:var(--overbooked); background-image: repeating-linear-gradient(45deg, transparent, transparent 2px, #fcc419 2px, #fcc419 4px);"></span>오버부킹 위험</div>
+        </div>
+    </body>
+    </html>
+    
