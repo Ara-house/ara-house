@@ -1,0 +1,33 @@
+name: Ara-house Auto Update
+
+on:
+  schedule:
+    - cron: '0 */2 * * *'  # 2시간마다 자동으로 실행하라는 암호입니다.
+  workflow_dispatch:       # 원할 때 수동으로 버튼을 눌러 실행할 수 있게 해줍니다.
+
+permissions:
+  contents: write          # 깃허브가 index.html 파일을 수정해서 올릴 수 있게 허락해줍니다.
+
+jobs:
+  update:
+    runs-on: ubuntu-latest # 깃허브의 가상 컴퓨터(리눅스)를 사용합니다.
+
+    steps:
+    - name: 1. 내 깃허브 파일들 가져오기
+      uses: actions/checkout@v4
+
+    - name: 2. 파이썬 설치하기
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+
+    - name: 3. 필수 라이브러리 설치하기
+      run: pip install requests icalendar
+
+    - name: 4. 깃허브 명찰 달아주기 (에러 방지용)
+      run: |
+        git config --global user.name "ara-house"
+        git config --global user.email "ara-house@users.noreply.github.com"
+
+    - name: 5. 파이썬 스크립트 실행!
+      run: python arabook.pyw
